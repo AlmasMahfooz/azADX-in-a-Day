@@ -33,3 +33,4 @@ range n from 1 to 10 step 1
 | project Timestamp, Source, Node, Level, Component,
           ClientRequestId, Message, Properties
 ```
+explain SELECT MAX(Timestamp) AS MaxTimestamp FROM logsRaw WHERE Level='Error'
