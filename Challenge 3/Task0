@@ -1,6 +1,7 @@
  SELECT COUNT() FROM logsRaw 
 
 Insert few records with Level="Error"
+
 ```kusto
 .set-or-append logsRaw <|
 range n from 1 to 10 step 1
@@ -31,5 +32,4 @@ range n from 1 to 10 step 1
     )
 | project Timestamp, Source, Node, Level, Component,
           ClientRequestId, Message, Properties
-
-'''
+```
