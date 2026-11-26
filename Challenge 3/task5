@@ -1,0 +1,6 @@
+
+logsRaw 
+|where Component =="INGESTOR_EXECUTER"
+|take 20
+|extend rowCount=tolong(Properties.rowCount)
+| top 1 by rowCount
