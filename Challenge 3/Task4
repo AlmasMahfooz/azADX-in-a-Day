@@ -1,0 +1,3 @@
+logsRaw
+| where Timestamp between (datetime(2014-03-08 13:00)..datetime(2014-03-08 22:00))
+| project Timestamp, ClientRequestId, Level, Message
