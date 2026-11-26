@@ -1,0 +1,7 @@
+logsRaw
+| where Component == "INGESTOR_EXECUTER"
+| extend fileFormat = tostring(Properties.format), rowCount = toint(Properties.rowCount)
+| project-reorder Timestamp, fileFormat, rowCount
+| where rowCount >0
+|distinct fileFormat
+|count
