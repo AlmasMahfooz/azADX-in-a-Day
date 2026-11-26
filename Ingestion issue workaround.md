@@ -4,12 +4,8 @@ Uploading the files locally bypasses that broken link completely while keeping t
 Ingest the records into logsRaw directly from the GitHub mirror <br>
 **https://github.com/Azure/ADX-in-a-Day-Lab1/tree/main/Data**<br>
 by using the kusto ingest command instead of the retired Azure Blob Storage link.<br>
-<b>
-.ingest into table logsRaw
-(
-   
+```kusto
+.ingest into table logsRaw (
     h@"https://raw.githubusercontent.com/Azure/ADX-in-a-Day-Lab1/main/Data/TelemetryLogs_File1.csv.gz"
-
 ) with (ignoreFirstRecord=true)
-
-</b>
+```
