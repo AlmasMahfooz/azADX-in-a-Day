@@ -1,0 +1,11 @@
+Because the official Microsoft Azure Blob Storage containers referenced in the lab instructions were decommissioned when the workshop was retired, the One-Click Blob/Container ingestion step fails. 
+Uploading the files locally bypasses that broken link completely while keeping the exact same dataset and schema.
+
+Ingest the records into logsRaw directly from the GitHub mirror 
+![Data Foler](https://github.com/Azure/ADX-in-a-Day-Lab1/tree/main/Data)
+
+by using the kusto ingest command instead of the retired Azure Blob Storage link.
+
+.ingest into table logsRaw (
+    h@"https://raw.githubusercontent.com/Azure/ADX-in-a-Day-Lab1/main/Data/TelemetryLogs_File1.csv.gz"
+) with (ignoreFirstRecord=true)
