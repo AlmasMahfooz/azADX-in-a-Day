@@ -1,0 +1,11 @@
+logsRaw
+| where Component == "DOWNLOADER"
+| take 10
+| extend originalSize=tolong(Properties.OriginalSize), compressedSize=tolong(Properties.compressedSize)
+| project Timestamp, ClientRequestId, Level, Message
+
+logsRaw
+| where Component == "DOWNLOADER"
+| take 10
+| extend originalSize=tolong(Properties.OriginalSize), compressedSize=tolong(Properties.compressedSize)
+| project Timestamp, toguid(ClientRequestId), Level, Message
