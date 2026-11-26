@@ -1,0 +1,4 @@
+
+logsRaw
+| where Message contains "ingestion"
+| summarize count() by Level
