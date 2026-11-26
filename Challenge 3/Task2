@@ -1,0 +1,6 @@
+
+logsRaw
+| where Component == "DOWNLOADER"
+| take 100
+| extend originalSize=tolong(Properties.OriginalSize), compressedSize=tolong(Properties.compressedSize)
+|getschema 
