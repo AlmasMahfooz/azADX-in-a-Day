@@ -1,0 +1,6 @@
+logsRaw
+| summarize noofComp=count() by Component
+
+logsRaw
+| summarize noofComp=count() by Component
+|where Component =="DATAACCESS"
