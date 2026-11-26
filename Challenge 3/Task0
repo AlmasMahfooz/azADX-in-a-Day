@@ -1,2 +1,35 @@
  SELECT COUNT() FROM logsRaw 
 
+Insert few records with Level="Error"
+'''kql
+.set-or-append logsRaw <|
+range n from 1 to 10 step 1
+| extend
+    Timestamp = datetime_add("second", n, datetime(2014-03-08 13:10:00.0000000)),
+    Source = strcat("IMAGINEFIRST", tostring(n % 4)),
+    Node = case(n % 3 == 0, "Engine000000000899",
+                n % 3 == 1, "Engine000000000900",
+                "Engine000000000901"),
+    Level = "Error",
+    Component = "INGESTOR_EXECUTER",
+    ClientRequestId = tostring(new_guid())
+| extend
+    Message = strcat(
+        "IngestionErrorEvent: failed to ingest file path: ",
+        "\"https://example.blob.core.windows.net/benchmark/2014/",
+        Source, "_error_", tostring(n), ".json.gz\""
+    ),
+    Properties = iff(
+        n % 4 == 0,
+        dynamic({}),
+        pack(
+            "size", 1567064757 + n * 1000,
+            "format", "json",
+            "errorCode", "IngestionFailed",
+            "errorMessage", "Sample ingestion error"
+        )
+    )
+| project Timestamp, Source, Node, Level, Component,
+          ClientRequestId, Message, Properties
+
+'''
