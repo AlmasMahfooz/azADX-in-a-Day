@@ -3,6 +3,7 @@ Uploading the files locally bypasses that broken link completely while keeping t
 
 Ingest the records into logsRaw directly from the GitHub mirror 
 https://github.com/Azure/ADX-in-a-Day-Lab1/tree/main/Data
+**https://github.com/Azure/ADX-in-a-Day-Lab1/tree/main/Data**
 
 by using the kusto ingest command instead of the retired Azure Blob Storage link.
 
